@@ -1,0 +1,42 @@
+<h1>Listing Albums</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Image</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% @albums.each do |album| %>
+ <%= album.name %>
+ <% album.images.each do |image| %> 
+   <%= image_tag image.image_url %>
+ <% end %>
+<% end %>
+    <% @albums.each do |album| %>
+      <tr>
+        <td><%= album.name %></td>
+      </td>
+
+        <td><%= link_to 'Show', album %></td>
+        <td><%= link_to 'Edit', edit_album_path(album) %></td>
+        <td><%= link_to 'Destroy', album, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Album', new_album_path %>
+
+<% for album in @albums %>
+  <div class="gallery">
+    <h2><%= link_to album.name, album %></h2>
+    
+  </div>
+<% end %>
+
+<p><%= link_to "New Gallery", new_album_path %></p>
